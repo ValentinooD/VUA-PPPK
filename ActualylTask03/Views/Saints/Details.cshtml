@@ -1,0 +1,42 @@
+﻿@model ActualylTask03.Saint
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Saint</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhenHeBecame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhenHeBecame)
+        </dd>
+
+        @foreach (var image in Model.Images)
+        {
+            <dd style="margin-top:10px">
+                <img src="~/Images?id=@image.Id" alt="Picture"
+                     width="300"
+                     height="200" />
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

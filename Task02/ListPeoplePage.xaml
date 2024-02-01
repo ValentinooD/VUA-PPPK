@@ -1,0 +1,105 @@
+﻿<local:FramedPage x:Class="Task02.ListPeoplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Task02"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="ListPeoplePage">
+
+    <Grid Background="{StaticResource GradientBackground}">
+        <ListView 
+            Width="500"
+            Height="275"
+            Margin="50,45,50,130"
+            x:Name="lvPeople"
+            AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="BtnEdit_Click" />
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Style.Triggers>
+                        <Trigger Property="ListView.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="CadetBlue" />
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="126" Header="First name"
+                        DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Width="126" Header="Last name"
+                        DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Width="126" Header="Age"
+                        DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Width="126" Header="Email">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Email}"
+                                           TextDecorations="Underline"
+                                           Foreground="Black">
+                                    <TextBlock.ToolTip>
+                                        <Image x:Name="picture"
+                                               Width="60"
+                                               Height="60"
+                                               Source="{Binding Image}" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Button 
+            Content="Classes"
+            x:Name="btnClasses"
+            Foreground="White"
+            Background="LightCoral"
+            Click="btnClasses_Click"
+        
+                HorizontalAlignment="Left" Margin="50,370,0,0" VerticalAlignment="Top" Width="123" Height="25" RenderTransformOrigin="0.5,-0.12"/>
+
+        <Button 
+            Content="Add"
+            x:Name="btnAdd"
+            Foreground="White"
+            Background="Green"
+            Click="BtnAdd_Click"
+                
+                HorizontalAlignment="Left" Margin="210,370,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <Button 
+            
+            Content="Edit"
+            x:Name="btnEdit"
+            Foreground="White"
+            Background="Black"
+            Click="BtnEdit_Click"
+                
+                
+                HorizontalAlignment="Left" Margin="330,370,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <Button 
+            Content="Delete"
+            x:Name="btnDelete"
+            Foreground="White"
+            Background="Red"
+            Click="BtnDelete_Click"
+                
+                HorizontalAlignment="Left" Margin="460,370,0,0" VerticalAlignment="Top" Width="80" Height="25" RenderTransformOrigin="0.5,-0.12"/>
+        
+        <RadioButton GroupName="Display" Content="All" IsChecked="true" Foreground="White" HorizontalAlignment="Left" Margin="69,334,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton GroupName="Display"  Content="Students" Foreground="White" HorizontalAlignment="Left" Margin="185,334,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton GroupName="Display"  Content="Professors" Foreground="White" HorizontalAlignment="Left" Margin="405,334,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton GroupName="Display"  Content="Employees" Foreground="White" HorizontalAlignment="Left" Margin="300,334,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+
+    </Grid>
+</local:FramedPage>
